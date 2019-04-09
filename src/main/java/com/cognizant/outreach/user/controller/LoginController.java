@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognizant.outreach.user.entity.EmployeeInfo;
 import com.cognizant.outreach.user.entity.LoginInfo;
-import com.cognizant.outreach.user.entity.RoleInfo;
 import com.cognizant.outreach.user.model.LoginResponse;
 import com.cognizant.outreach.user.model.UserInfo;
 import com.cognizant.outreach.user.service.LoginService;
@@ -40,10 +40,21 @@ public class LoginController {
 					&& userInfo.getPassword().equals(loginInfo.getPassword())) {
 				loginResponse.setStatus("SUCCESS");
 				loginResponse.setMessage("Login Successful");
-				if(loginInfo.getRoleId() != null) {
-					RoleInfo roleInfo = this.roleService.findRoleById(loginInfo.getRoleId()).get();
-					loginResponse.setRoleId(roleInfo.getId().toString());
-					loginResponse.setRoleName(roleInfo.getName());
+				/*
+				 * if(loginInfo.getRoleId() != null) { RoleInfo roleInfo =
+				 * this.roleService.findRoleById(loginInfo.getRoleId()).get();
+				 * loginResponse.setRoleId(roleInfo.getId().toString());
+				 * loginResponse.setRoleName(roleInfo.getName()); }
+				 */
+				if(loginInfo.getRoleInfo() != null) {
+					loginResponse.setRoleId(loginInfo.getRoleInfo().getId());
+					loginResponse.setRoleName(loginInfo.getRoleInfo().getName());
+				}
+				if(loginInfo.getEmployeeInfo() != null) {
+					EmployeeInfo employeeInfo = loginInfo.getEmployeeInfo(); 
+					loginResponse.setEmployeeId(employeeInfo.getId());
+					loginResponse.setFirstName(employeeInfo.getFirstName());
+					loginResponse.setLastName(employeeInfo.getLastName());
 				}
 				
 			}else {

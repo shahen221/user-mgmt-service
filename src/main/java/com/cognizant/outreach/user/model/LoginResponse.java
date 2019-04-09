@@ -13,9 +13,39 @@ public class LoginResponse implements Serializable{
 	
 	private String errormsg;
 	
-	private String roleId;
+	private Long roleId;
 	
 	private String roleName;
+	
+	private Long employeeId;
+	
+	private String firstName;
+	
+	private String lastName;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
+	}
 
 	public String getStatus() {
 		return status;
@@ -49,11 +79,11 @@ public class LoginResponse implements Serializable{
 		this.errormsg = errormsg;
 	}
 
-	public String getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(String roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
